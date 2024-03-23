@@ -1,14 +1,13 @@
 # pip install openai
 
 from openai import OpenAI
-import bs4
+from dotenv import load_dotenv
 import os
 import sys
-import constants
 
-os.environ["OPENAI_API_KEY"] = constants.OPEN_AI_KEY
+load_dotenv()
 client = OpenAI(
-   api_key=os.environ.get("OPENAI_API_KEY")
+   api_key=os.getenv('OPEN_AI_KEY')
 )
 messages = []
 

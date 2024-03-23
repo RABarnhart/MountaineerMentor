@@ -32,10 +32,9 @@ def send_message_to_ai():
 
 @app.route('/messages', methods = ['GET'])
 def get_message_data():
-    print('Messages were sent to end user')
-    jsondata = request.get_json()
-    data = json.loads(jsondata)
-    return json.dumps(data)
+    print('Sending messages')
+    print(messages)
+    return jsonify(messages)
 
 @app.route('/debug', methods = ['GET'])
 def pong():

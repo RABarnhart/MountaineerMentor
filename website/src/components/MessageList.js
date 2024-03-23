@@ -30,6 +30,7 @@ class MessageList extends React.Component {
                 <h2>Ask Your Question Here!</h2>
                 <input onChange={this.handleInputMessage} className='userInput m-2 mb-6 bg-black/5 border border-white p-2'/>
                 <button onClick={this.sendMessageToAI}>Send</button>
+                <button onClick={this.getMessagesFromAIHandler}>Get AI</button>
                 <button onClick={() => ping()}>PING!</button>
 
             </div>
@@ -46,14 +47,12 @@ class MessageList extends React.Component {
             .catch(error => console.log(error))
     }
 
-    getMessagesFromAIHandler() {
-       getMessagesFromAI()
-            .then(data => data.json())
-            .then(json_data => {
-                console.log(json_data)
-            })
+    getMessagesFromAIHandler = async() => {
+        getMessagesFromAI()
+            .then(json_data => console.log(json_data))
+            .catch(error => console.error("Error fetching messages:", error))
     }
-    
+
 }
 
 function AIResponseText(props) {

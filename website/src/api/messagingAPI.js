@@ -3,8 +3,9 @@ const PORT = '8000'
 const API_URL = IP + PORT
 
 const getMessagesFromAI = async() => {
-    const messages = await fetch(`${API_URL}/messages`, {method: 'GET'})
-    return messages
+    const response = await fetch(`${API_URL}/messages`, {method: 'GET'});
+    const messages = await response.json();
+    return messages;
 }
 
 const sendUserMessage = async(message) => {

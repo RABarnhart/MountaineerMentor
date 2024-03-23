@@ -1,15 +1,32 @@
 # pip install openai
-
 from openai import OpenAI
 from dotenv import load_dotenv
+from flask import Flask
+from flask import request
 import os
 import sys
+import json
 
 load_dotenv()
 client = OpenAI(
    api_key=os.getenv('OPEN_AI_KEY')
 )
 messages = []
+
+# FLASK
+app = Flask(__name__)
+port = 7000
+ip = "192.168.0.105"
+
+print(app)
+
+
+@app.route('/messages', methods = ['GET'])
+def send_message_data():
+    print('Messages were sent to end user')
+    jsondata = request.get_json()
+    data = json.loads(jsondata)
+    return json.dumps(data)
 
 def bot():
     # Keep repeating the following
@@ -38,4 +55,6 @@ def bot():
 
 if __name__ == "__main__":
     print("Start chatting with the bot (type 'quit' to stop)!")
+    app.run(host='localhost', port=8000)
     bot()
+

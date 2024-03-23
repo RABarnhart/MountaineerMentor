@@ -1,7 +1,7 @@
 import React from "react";
 import { FaRobot } from "react-icons/fa";
 import { FaPerson } from "react-icons/fa6";
-import { getMessagesFromAI, sendMessage } from "../api/messagingAPI"
+import { getMessagesFromAI, sendUserMessage, ping } from "../api/messagingAPI"
 
 class MessageList extends React.Component {
 
@@ -20,10 +20,17 @@ class MessageList extends React.Component {
 
     render() {
         return (
-            <div className="AITextArea my-5 border border-white w-[40%] h-96 overflow-auto">
-                {this.state.messages.map(({from, message}) => 
-                    {from === "user" ? <UserResponseText text={message} /> : <AIResponseText text={message} /> }
-                )}
+            <div>
+                <div className="AITextArea my-5 border border-white h-96 overflow-auto">
+                    {this.state.messages.map(({from, message}) => 
+                        {from === "user" ? <UserResponseText text={message} /> : <AIResponseText text={message} /> }
+                    )}
+
+                </div>
+                <h2>Ask Your Question Here!</h2>
+                <input onChange={this.handleInputMessage} className='userInput m-2 mb-6 bg-black/5 border border-white p-2'/>
+                <button onClick={this.sendMessageToAI}>Send</button>
+                <button onClick={() => ping()}>PING!</button>
 
             </div>
         )
@@ -33,8 +40,10 @@ class MessageList extends React.Component {
         this.setState({ userMessage: event.target.value })
     }
 
-    sendMessage = async(message) => {
-        sendMessage("user", message)
+    sendMessageToAI = async() => {
+        sendUserMessage(this.state.userMessage) 
+            .then(data => console.log(data))
+            .catch(error => console.log(error))
     }
 
     getMessagesFromAIHandler() {

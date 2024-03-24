@@ -44,13 +44,16 @@ def chatbot_IO(message):
     load_dotenv()
     client = OpenAI(api_key=os.getenv('OPEN_AI_KEY'))
 
+    internal_chat_log = chat_log
+
     # add each message to the list
-    chat_log.append({"role": "user", "content": data.prompt + data.data + "question: " + message})
+    internal_chat_log.append({"role": "user", "content": data.prompt + data.data + "question: " + message})
+    chat_log.append({"role": "user", "content": message})
 
     # Request gpt-3.5-turbo for chat completion
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
-        messages=chat_log
+        messages=internal_chat_log
     )
 
     # Print the response and add it to the messages list
@@ -59,7 +62,7 @@ def chatbot_IO(message):
     print(f"Bot: {chat_message}")
     chat_log.append({"role" : "assistant", "content": chat_message})
     
-    return chat_log
+    internal_chat_log = []
 
 if __name__ == "__main__":
     chatbot_IO(input("user: "))

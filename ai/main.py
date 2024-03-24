@@ -9,6 +9,7 @@ import json
 import os
 
 chat_log = []
+internal_chat_log = []
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv('OPEN_AI_KEY'))
@@ -34,6 +35,7 @@ def get_message_data():
 def chatbot_IO(message):
     load_dotenv()
     client = OpenAI(api_key=os.getenv('OPEN_AI_KEY'))
+
 
     internal_chat_log = chat_log
 

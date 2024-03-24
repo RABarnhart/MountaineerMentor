@@ -8,27 +8,38 @@ class MessageList extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            messages: [
-                {from: "ai", message: "Test AI Message"},
-                {from: "user", message: "Test User Message"}
-            ],
+            messages: [],
             userMessage: ""
         }
 
         this.handleInputMessage = this.handleInputMessage.bind(this)
     }
 
+    componentDidMount() {
+        getMessagesFromAI()
+            .then(data => {
+                this.setState({ messages: data });
+                console.log("Loaded Messages...");
+            });
+    }
+ 
+
     render() {
         return (
             <div>
                 <div className="AITextArea my-5 border border-white h-96 overflow-auto">
-                    {this.state.messages.map(({from, message}) => 
-                        {from === "user" ? <UserResponseText text={message} /> : <AIResponseText text={message} /> }
+
+                    {this.state.messages.map(({role, message}, index) => 
+                        role === "user" ? 
+                            <UserResponseText key={index} text={message} /> : 
+                            <AIResponseText key={index} text={message} />
                     )}
 
                 </div>
                 <h2>Ask Your Question Here!</h2>
-                <input onChange={this.handleInputMessage} className='userInput m-2 mb-6 bg-black/5 border border-white p-2'/>
+                <input onChange={this.handleInputMessage} onKeyDown={(e) => {
+                    if (e.key == "Enter") { this.sendMessageToAI() }
+                }} value={this.state.userMessage} className='userInput m-2 mb-6 bg-black/5 border border-white p-2'/>
                 <button onClick={this.sendMessageToAI}>Send</button>
                 <button onClick={this.getMessagesFromAIHandler}>Get AI</button>
                 <button onClick={() => ping()}>PING!</button>

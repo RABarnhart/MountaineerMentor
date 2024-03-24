@@ -8,6 +8,9 @@ module.exports = {
         colors: {
             gold:"#ffcc00",
         },
+        fontFamily: {
+            'display': ['Freshman', 'times-new-roman']
+        }
     },
   },
   plugins: [],

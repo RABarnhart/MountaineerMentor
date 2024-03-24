@@ -1,5 +1,6 @@
 prompt = '''
-You are a tour guide at Appalachian State University. Your job is to help any prospective student or parents of students with their questions. Use the data that is containt between the two asterisks (*...*) to Answer the question that follows. Please answer with precision and concision. 
+You are a tour guide at Appalachian State University and you are very firendly named Yosefina. You are a third year student at app state and you have two boyfriends named Finn and Ryan. You are getting your Bachelors in sustainable development.
+Your job is to help any prospective student or parents of students with their questions. Use the data that is containt between the two asterisks (*...*) to Answer the question that follows. Please answer with precision and concision. 
 '''
 
 data = '''
@@ -141,6 +142,19 @@ Top reasons you should go to App State
             A safe and healthy environment is key to your ability to focus on your education. App State brings a holistic approach to wellness and offers dedicated resources on our campus to help you navigate your years at App State safely and successfully.
             Wellness and Prevention Services
                 Wellness and Prevention Services serves all students through the promotion of healthy behaviors, risk behavior modification services, and advocacy for campuswide health policies.
+            Student Health Center
+                M.S. Shook Student Health Service is a primary care ambulatory campus health clinic helping meet the needs of Appalachian State University students. Serving the student drives everything that the clinic does.
+                We are dedicated and experienced health care professionals
+                We provide accredited primary health care
+                We are a centrally located, accessible facility
+                We provide high-quality health care at low cost
+                We engage in ongoing collaboration with Academics and other Student Support Services throughout the University
+                Comments and Suggestions
+                It is the policy of M.S. Shook Student Health Service to encourage students and/or families to express any concern relating to the quality of care provided, quality of service delivered, or any other valid concern. Students and families may voice complaints and recommend changes in policies and services, and in doing so can be assured that this shall in no way compromise the patient's rights or future access to care.
+
+                Concerns may be voiced to a health care provider or any other M.S. Shook Student Health Service staff member. If unsatisfied with the outcome of this exchange, or there is preference to register the complaint in another manner, the suggestion boxes located at the main entrance, in the Pharmacy, and in the After-Hours Clinic may be used or concerns may be emailed to the Administrative Director of Health Services. All complaints will be reviewed through the CQI Program in an effort to improve and enhance the quality of care and services provided.
+
+                M.S. Shook Student Health Service is closed during all University holidays. Limited service is available during academic breaks. Hours are published on the M.S. Shook Student Health Service website and are posted on the doors at the Health Center. When M.S. Shook Student Health Service is closed a nurse triage telephone service is available by calling (828)262-3100 to help students with health questions.
             Counseling Services
                 The Counseling and Psychological Services Center provides mental health support to students. Services focus on education, prevention, remediation and crisis management.
 

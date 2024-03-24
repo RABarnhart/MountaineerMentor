@@ -10,7 +10,6 @@ import os
 
 chat_log = []
 
-
 load_dotenv()
 client = OpenAI(api_key=os.getenv('OPEN_AI_KEY'))
 
@@ -52,5 +51,6 @@ def chatbot_IO(message):
     chat_log.append({"role" : "assistant", "content": chat_message})
 
 if __name__ == "__main__":
-    app.run(host='localhost', port=8000)
+    chatbot_IO(input("user: "))
+    #app.run(host='localhost', port=8000)
 

@@ -35,7 +35,8 @@ class MessageList extends React.Component {
     render() {
         return (
             <div>
-                <div className="AITextArea w-3/4 mx-auto my-5 border border-white h-96 overflow-auto">
+                <img src={YosefinaPic} className="w-1/6 mx-auto h-1/6 m-4 border"/>
+                <div className="AITextArea w-1/2 mx-auto my-5 border border-white h-96 overflow-auto">
 
                     {this.state.messages.map(({role, content} , index) => 
                         role === "user" ? 
@@ -58,17 +59,6 @@ class MessageList extends React.Component {
         this.setState({ userMessage: event.target.value })
     }
 
-
-    parseUserMessage = content => {
-        const pattern = "* question: ";
-        const startIndex = content.indexOf(pattern);
-
-        if (startIndex !== -1)
-            return content.substring(startIndex + pattern.length);
-
-        return "Question not found.";
-    }
-
     getMessagesFromAIHandler = async() => {
         getMessagesFromAI()
             .then(json_data => console.log(json_data))
@@ -80,7 +70,7 @@ class MessageList extends React.Component {
 function AIResponseText(props) {
     return (
         <div className="AIResponseText text-white p-2">        
-            <span className="flex"><img src={YosefinaPic} className="w-8 m-3 text-white" /><p className="p-2 bg-black/20 rounded">{props.text}</p></span>
+            <span className="flex"><FaRobot className="w-8 m-3 text-white" /><p className="p-2 w-3/4 bg-black/20 rounded">{props.text}</p></span>
         </div>
     )
 }

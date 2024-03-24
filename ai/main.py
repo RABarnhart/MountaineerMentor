@@ -56,6 +56,5 @@ def chatbot_IO(message):
     internal_chat_log = []
 
 if __name__ == "__main__":
-    chatbot_IO(input("user: "))
-    #app.run(host='localhost', port=8000)
+    app.run(host='localhost', port=8000)
 

@@ -1,9 +1,3 @@
-from langchain_community.document_loaders import TextLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter, CharacterTextSplitter
-from langchain.retrievers import ContextualCompressionRetriever
-from langchain.retrievers.document_compressors import LLMChainExtractor
-from langchain_community.vectorstores import Chroma
-from langchain_openai import OpenAIEmbeddings
 from openai import OpenAI
 from dotenv import load_dotenv
 import data
@@ -18,10 +12,7 @@ chat_log = []
 
 
 load_dotenv()
-client = OpenAI(
-api_key=os.getenv('OPEN_AI_KEY')
-)
-messages = []
+client = OpenAI(api_key=os.getenv('OPEN_AI_KEY'))
 
 # FLASK
 app = Flask(__name__)
@@ -32,19 +23,13 @@ print(app)
 @app.route('/messages', methods=['POST'])
 def send_message_to_ai():
     message = request.get_json()
-    print("received data...")
-    messages.append({'role':'user', 'message':message})
-    print(messages)
-    return jsonify(message)
+    chatbot_IO(message)
+    return "Recieved Request"
 
 @app.route('/messages', methods = ['GET'])
 def get_message_data():
-    print('Sending messages')
-    return jsonify(messages)
-
-@app.route('/debug', methods = ['GET'])
-def pong():
-    return 'Pong'
+    print(chat_log)
+    return jsonify(chat_log)
 
 # Inputs a message string and returns the chat history
 def chatbot_IO(message):
@@ -65,8 +50,6 @@ def chatbot_IO(message):
     
     print(f"Bot: {chat_message}")
     chat_log.append({"role" : "assistant", "content": chat_message})
-    
-    return chat_log
 
 if __name__ == "__main__":
     app.run(host='localhost', port=8000)

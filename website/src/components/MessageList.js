@@ -1,7 +1,7 @@
 import React from "react";
 import { FaRobot } from "react-icons/fa";
 import { FaPerson } from "react-icons/fa6";
-import { getMessagesFromAI, sendUserMessage, ping } from "../api/messagingAPI"
+import { getMessagesFromAI, sendUserMessage } from "../api/messagingAPI"
 
 class MessageList extends React.Component {
 
@@ -19,8 +19,15 @@ class MessageList extends React.Component {
         getMessagesFromAI()
             .then(data => {
                 this.setState({ messages: data });
-                console.log("Loaded Messages...");
             });
+    }
+
+    sendMessageToAI = async () => {
+        sendUserMessage(this.state.userMessage) 
+            .then(data => {console.log(data)})
+            .catch(error => console.log(error))
+
+        this.setState({ userMessage: '' }); // Reset the user input field
     }
  
 
@@ -29,10 +36,10 @@ class MessageList extends React.Component {
             <div>
                 <div className="AITextArea my-5 border border-white h-96 overflow-auto">
 
-                    {this.state.messages.map(({role, message}, index) => 
+                    {this.state.messages.map(({role, content} , index) => 
                         role === "user" ? 
-                            <UserResponseText key={index} text={message} /> : 
-                            <AIResponseText key={index} text={message} />
+                            <UserResponseText key={index} text={content} /> : 
+                            <AIResponseText key={index} text={content} />
                     )}
 
                 </div>
@@ -41,8 +48,6 @@ class MessageList extends React.Component {
                     if (e.key == "Enter") { this.sendMessageToAI() }
                 }} value={this.state.userMessage} className='userInput m-2 mb-6 bg-black/5 border border-white p-2'/>
                 <button onClick={this.sendMessageToAI}>Send</button>
-                <button onClick={this.getMessagesFromAIHandler}>Get AI</button>
-                <button onClick={() => ping()}>PING!</button>
 
             </div>
         )
@@ -52,10 +57,15 @@ class MessageList extends React.Component {
         this.setState({ userMessage: event.target.value })
     }
 
-    sendMessageToAI = async() => {
-        sendUserMessage(this.state.userMessage) 
-            .then(data => console.log(data))
-            .catch(error => console.log(error))
+
+    parseUserMessage = content => {
+        const pattern = "* question: ";
+        const startIndex = content.indexOf(pattern);
+
+        if (startIndex !== -1)
+            return content.substring(startIndex + pattern.length);
+
+        return "Question not found.";
     }
 
     getMessagesFromAIHandler = async() => {

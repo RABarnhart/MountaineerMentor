@@ -1,3 +1,4 @@
+import copy
 from openai import OpenAI
 from dotenv import load_dotenv
 import data
@@ -37,7 +38,7 @@ def chatbot_IO(message):
     client = OpenAI(api_key=os.getenv('OPEN_AI_KEY'))
 
 
-    internal_chat_log = chat_log
+    internal_chat_log = copy(chat_log)
 
     # add each message to the list
     internal_chat_log.append({"role": "user", "content": data.prompt + data.data + "question: " + message})

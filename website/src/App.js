@@ -1,20 +1,16 @@
 import './App.css';
 import MessageList from './components/MessageList';
-
-
+import mountains from './assets/mountains.jpg'
 
 
 function App() {
   return (
     <div className="App">
+      <img src={mountains} className="absolute w-full h-full z-[-1]"/>
       <header className="App-header">
-
         <h1 className='text-5xl text-amber-300 p-2 uppercase font-bold'>Mountaineer Mentor</h1>
 
         <MessageList /> 
-
-        <h2>Ask Your Question Here!</h2>
-        <input className='userInput m-2 w-[40%] mb-6 bg-black/5 border border-white p-2'/>
 
         <h3>Example Question Box</h3>
         <p className='text-lg text-gray-400 p-1'>Select One!</p>

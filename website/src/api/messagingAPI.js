@@ -1,21 +1,33 @@
-const API_URL = "localhost:8080"
+const IP = 'http://localhost:'
+const PORT = '8000'
+const API_URL = IP + PORT
 
 const getMessagesFromAI = async() => {
-    const messages = await fetch(`${API_URL}/messages`, {method: 'GET'})
-    return messages
+    const response = await fetch(`${API_URL}/messages`, {method: 'GET'});
+    const messages = await response.json();
+    return messages;
 }
 
-const sendMessage = async(from, message) => {
-    
-    var jsonMessage = {
-        "message":`${message}`,
-        "from":`${from}`
-    }
+const sendUserMessage = async(message) => {
+    console.log("Sending Message Data...")
+    await fetch(`${API_URL}/messages`, {
+        method: 'POST', 
+        body: JSON.stringify(message),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+}
 
-    await fetch(`${API_URL}/message`, {method: 'POST', body: JSON.stringify(jsonMessage)})
+const ping = async () => {
+    console.log("Pinging server...");
+    const response = await fetch(`${API_URL}/debug`);
+    const text = await response.text();
+    console.log("Server response:", text);
 }
 
 export {
     getMessagesFromAI,
-    sendMessage
+    sendUserMessage,
+    ping
 }

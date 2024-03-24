@@ -2,6 +2,7 @@ import React from "react";
 import { FaRobot } from "react-icons/fa";
 import { FaPerson } from "react-icons/fa6";
 import { getMessagesFromAI, sendUserMessage } from "../api/messagingAPI"
+import YosefinaPic from "../assets/yosefina.webp"
 
 class MessageList extends React.Component {
 
@@ -34,7 +35,7 @@ class MessageList extends React.Component {
     render() {
         return (
             <div>
-                <div className="AITextArea my-5 border border-white h-96 overflow-auto">
+                <div className="AITextArea w-3/4 mx-auto my-5 border border-white h-96 overflow-auto">
 
                     {this.state.messages.map(({role, content} , index) => 
                         role === "user" ? 
@@ -79,7 +80,7 @@ class MessageList extends React.Component {
 function AIResponseText(props) {
     return (
         <div className="AIResponseText text-white p-2">        
-            <span className="flex"><FaRobot className="w-8 m-3 text-white" /><p className="p-2 bg-black/20 rounded">{props.text}</p></span>
+            <span className="flex"><img src={YosefinaPic} className="w-8 m-3 text-white" /><p className="p-2 bg-black/20 rounded">{props.text}</p></span>
         </div>
     )
 }
@@ -87,7 +88,7 @@ function AIResponseText(props) {
 function UserResponseText(props) { 
     return (
         <div className="UserResponseText text-white p-2">        
-            <span className="flex"><FaPerson className="w-8 m-3 text-white" /><p className="p-2 bg-black/20 rounded">{props.text}</p></span>
+            <span className="flex"><FaPerson className="w-8 h-8 m-3 text-white" /><p className="p-2 bg-black/20 rounded">{props.text}</p></span>
         </div>
     )
 }

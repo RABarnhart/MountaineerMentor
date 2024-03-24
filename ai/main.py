@@ -1,9 +1,3 @@
-from langchain_community.document_loaders import TextLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter, CharacterTextSplitter
-from langchain.retrievers import ContextualCompressionRetriever
-from langchain.retrievers.document_compressors import LLMChainExtractor
-from langchain_community.vectorstores import Chroma
-from langchain_openai import OpenAIEmbeddings
 from openai import OpenAI
 from dotenv import load_dotenv
 import data
@@ -15,7 +9,6 @@ import json
 import os
 
 chat_log = []
-
 
 load_dotenv()
 client = OpenAI(
@@ -70,5 +63,6 @@ def chatbot_IO(message):
     return chat_log
 
 if __name__ == "__main__":
-    app.run(host='localhost', port=8000)
+    chatbot_IO(input("user: "))
+    #app.run(host='localhost', port=8000)
 

@@ -37,8 +37,12 @@ def chatbot_IO(message):
     load_dotenv()
     client = OpenAI(api_key=os.getenv('OPEN_AI_KEY'))
 
+<<<<<<< HEAD
 
     internal_chat_log = copy.copy(chat_log)
+=======
+    internal_chat_log = copy(chat_log)
+>>>>>>> 34e7a32d17ba8070fe68bf03317d4cff1d34a094
 
     # add each message to the list
     internal_chat_log.append({"role": "user", "content": data.prompt + data.data + "question: " + message})

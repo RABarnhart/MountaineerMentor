@@ -21,11 +21,11 @@ class MessageList extends React.Component {
             .then(data => {
                 this.setState({ messages: data });
             });
-    }
+        }
 
     sendMessageToAI = async () => {
         sendUserMessage(this.state.userMessage) 
-            .then(data => {console.log(data)})
+            .then(data => {getMessagesFromAI().then(data2 => {this.setState({ messages: data2})})})
             .catch(error => console.log(error))
 
         this.setState({ userMessage: '' }); // Reset the user input field
@@ -35,8 +35,8 @@ class MessageList extends React.Component {
     render() {
         return (
             <div>
-                <img src={YosefinaPic} className="w-1/6 mx-auto h-1/6 m-4 border"/>
-                <div className="AITextArea w-1/2 mx-auto my-5 border border-white h-96 overflow-auto">
+                <img src={YosefinaPic} className="w-1/6 mx-auto h-1/6 m-4 border rounded rounded-xl shadow-4xl"/>
+                <div className="AITextArea w-1/2 mx-auto my-5 border border-white h-96 bg-gray-800 overflow-auto">
 
                     {this.state.messages.map(({role, content} , index) => 
                         role === "user" ? 
@@ -48,7 +48,7 @@ class MessageList extends React.Component {
                 <h2>Ask Your Question Here!</h2>
                 <input onChange={this.handleInputMessage} onKeyDown={(e) => {
                     if (e.key == "Enter") { this.sendMessageToAI() }
-                }} value={this.state.userMessage} className='userInput m-2 mb-6 bg-black/5 border border-white p-2'/>
+                }} value={this.state.userMessage} className='userInput text-white m-2 mb-6 bg-gray-800 w-2/5 border border-white p-2'/>
                 <button onClick={this.sendMessageToAI}>Send</button>
 
             </div>
@@ -70,7 +70,7 @@ class MessageList extends React.Component {
 function AIResponseText(props) {
     return (
         <div className="AIResponseText text-white p-2">        
-            <span className="flex"><FaRobot className="w-8 m-3 text-white" /><p className="p-2 w-3/4 bg-black/20 rounded">{props.text}</p></span>
+            <span className="flex"><FaRobot className="w-8 m-10 text-white" /><p className="p-2 w-3/4 text-left bg-black/20 rounded">{props.text}</p></span>
         </div>
     )
 }
@@ -78,7 +78,7 @@ function AIResponseText(props) {
 function UserResponseText(props) { 
     return (
         <div className="UserResponseText text-white p-2">        
-            <span className="flex"><FaPerson className="w-8 h-8 m-3 text-white" /><p className="p-2 bg-black/20 rounded">{props.text}</p></span>
+            <span className="flex"><FaPerson className="w-8 h-8 m-3 text-white" /><p className="p-2 text-left w-3/4 bg-black/20 rounded">{props.text}</p></span>
         </div>
     )
 }

@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <img src={mountains} className="absolute w-full h-full z-[-1]"/>
       <header className="App-header">
-        <h1 className='text-5xl text-amber-300 p-2 uppercase font-bold'>Mountaineer Mentor</h1>
+        <h1 className='text-5xl text-amber-300 p-2 uppercase font-bold font-[Freshman]'>Mountaineer Mentor</h1>
 
         <MessageList /> 
 

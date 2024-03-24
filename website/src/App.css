@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Freshman;
+  src: url('./assets/Freshman.ttf');
+}
+
 .App {
   text-align: center;
 }
@@ -5,6 +10,10 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.title {
+   font-family: 'Freshman'; 
 }
 
 button {

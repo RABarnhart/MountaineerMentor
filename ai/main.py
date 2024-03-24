@@ -24,16 +24,15 @@ print(app)
 
 @app.route('/messages', methods=['POST'])
 def send_message_to_ai():
-    data = request.get_json()
+    message = request.get_json()
     print("received data...")
-    messages.append(data)
+    messages.append({'role':'user', 'message':message})
     print(messages)
-    return jsonify(data)
+    return jsonify(message)
 
 @app.route('/messages', methods = ['GET'])
 def get_message_data():
     print('Sending messages')
-    print(messages)
     return jsonify(messages)
 
 @app.route('/debug', methods = ['GET'])

@@ -28,7 +28,7 @@ class MessageList extends React.Component {
             .then(data => {getMessagesFromAI().then(data2 => {this.setState({ messages: data2})})})
             .catch(error => console.log(error))
 
-        this.setState({ userMessage: '' }); // Reset the user input field
+        this.setState({ userMessage: '' });
     }
  
 
@@ -49,7 +49,7 @@ class MessageList extends React.Component {
                 <input onChange={this.handleInputMessage} onKeyDown={(e) => {
                     if (e.key == "Enter") { this.sendMessageToAI() }
                 }} value={this.state.userMessage} className='userInput text-white m-2 mb-6 bg-gray-800 w-2/5 border border-white p-2'/>
-                <button onClick={this.sendMessageToAI}>Send</button>
+                <button className="bg-white w-[200px]" onClick={this.sendMessageToAI}>Send</button>
 
             </div>
         )

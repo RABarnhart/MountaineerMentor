@@ -1,28 +1,23 @@
 import './App.css';
 import MessageList from './components/MessageList';
-import mountains from './assets/mountains.jpg'
+import mountains from './assets/Mountains.jpeg';
+import title from './assets/Title.png';
 
 
 function App() {
   return (
-    <div className="App">
-      <img src={mountains} className="absolute w-full h-full z-[-1]"/>
-      <header className="App-header">
-        <h1 className='text-5xl text-amber-300 p-2 uppercase font-bold font-[Freshman]'>Mountaineer Mentor</h1>
+      <div
+          className="z-0 relative min-h-screen bg-no-repeat bg-cover bg-fixed"
+          style={{ backgroundImage: `url(${mountains})` }}
+      >
+      <div className="absolute z-1 top-0 right-0 bottom-0 left-0 bg-black bg-opacity-40"></div>
 
-        <MessageList /> 
-
-        <h3>Example Question Box</h3>
-        <p className='text-lg text-gray-400 p-1'>Select One!</p>
-            <ul className='p-3 border bg-black/5 rounded'>
-            <li><button>How is your day?</button></li>
-            <li><button>When is the next football game?</button></li>
-            <li><button>How far is Anne Belk Hall from Walker Hall?</button></li>
-        </ul>
-      
-      </header>
+      <div className="App relative z-10">
+        <img src={title} className="w-1/2 mx-auto p-4"/>
+        <MessageList />
+      </div>
     </div>
-  );
+      );
 }
 
 export default App;
